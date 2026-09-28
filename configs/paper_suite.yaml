@@ -1,0 +1,49 @@
+experiment_name: brisc2025_robustness_paper_suite
+image_size: 256
+batch_size: 8
+num_workers: 2
+epochs: 30
+lr: 0.0003
+min_lr: 0.0
+weight_decay: 0.0001
+pretrained_encoder: true
+imagenet_norm: true
+amp: true
+threshold: 0.5
+bce_weight: 0.5
+dice_weight: 0.5
+patience: 8
+min_delta: 0.0005
+persistent_workers: true
+prefetch_factor: 2
+small_quantile: 0.33
+
+# The paper uses a fixed data split (DATA_SPLIT_SEED=42) and varies only model
+# initialization/training seeds. This separates split variance from seed variance.
+architectures:
+  - unet_effb0
+  - unetpp_effb0
+  - deeplabv3p_resnet50
+methods:
+  - erm
+  - balanced
+  - groupdro
+primary_architecture: unet_effb0
+
+architecture_overrides:
+  deeplabv3p_resnet50:
+    lr: 0.0001
+    batch_size: 8
+
+balanced:
+  inverse_frequency_exponent: 1.0
+
+groupdro:
+  eta: 0.05
+  min_q: 0.000001
+
+threshold_calibration:
+  start: 0.30
+  stop: 0.70
+  step: 0.025
+  objective: mean_dice

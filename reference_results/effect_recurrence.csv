@@ -1,0 +1,9 @@
+study,factor,runs,partial_eta2_mean,classic_significant_runs,hc3_significant_runs
+standard,tumor,9,0.14742193725987443,9,9
+standard,size,9,0.07386166427930647,9,9
+standard,plane,9,0.018585107836771073,9,9
+standard,interaction,9,0.017956189489349145,8,2
+confirmatory,tumor,3,0.16119220321638458,3,3
+confirmatory,size,3,0.015414204602221657,3,3
+confirmatory,plane,3,0.0019335049287003234,0,0
+confirmatory,interaction,3,0.001361618491150819,0,0
